@@ -1,13 +1,21 @@
 package fa;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 public class GameMgr {
 
 	private static int players;
+	
+	private static Display display;
+	private GameState g;
+	private int pass = 0;
 
 	public GameMgr(int players) {
 		this.players = players;
@@ -15,7 +23,7 @@ public class GameMgr {
 
 	public void resetGame() {
 
-		GameState g = GameState.getInstance();
+		g = GameState.getInstance();
 
 		// set number of players
 		g.setNumPlayers(players);
@@ -53,7 +61,7 @@ public class GameMgr {
 		}
 		g.setHands(hands);
 
-		// get 1 for board
+		// initialize board
 		Board board = new Board();
 		board.setRep(new FaBoardRep());
 
@@ -67,8 +75,6 @@ public class GameMgr {
 		board.setLeftEnd(firstDom.getLeft());
 		board.setRightEnd(firstDom.getRight());
 
-		// Strategy[] strategies;
-
 		// set scores
 		int[] scores = { 0, 0 };
 		g.setScores(scores);
@@ -79,6 +85,15 @@ public class GameMgr {
 
 		// set play state
 		g.setStatus(Status.PLAY_STATE);
+		g.setWinner(-1);
+
+		// set strategies
+		Strategy[] strategies = new Strategy[players];
+		strategies[0] = new FaithStrategy(0);
+		strategies[1] = new FaithStrategy(1);
+		g.setStrategies(strategies);
+		
+		//timer.start();
 	}
 
 	public static int[] getStartingDom(Hand[] hands) {
@@ -91,7 +106,7 @@ public class GameMgr {
 
 		int starter = 0;
 		int index = -1;
-		
+
 		// player 0 starts with highest double
 		if (result0[1] > result1[1]) {
 			starter = 0;
@@ -181,14 +196,20 @@ public class GameMgr {
 		return results;
 	}
 
+	public void callRepaint() {
+		display.callRepaint();
+	}
+
+	
+
 	public static void main(String[] args) {
 
 		int players = 2;
 		GameMgr gm = new GameMgr(players);
 		gm.resetGame();
 
+		display = new Display();
 		JFrame frame = new JFrame("Dominoes!");
-		Display display = new Display();
 		frame.add(display);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 700);

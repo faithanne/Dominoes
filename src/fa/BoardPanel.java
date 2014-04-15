@@ -27,6 +27,11 @@ public class BoardPanel extends JPanel {
 			e.printStackTrace();
 		}
 	}
+	
+	public void clearDrawminoes(){
+		leftDrawminoes.clear();
+		rightDrawminoes.clear();
+	}
 
 	public List<Drawmino> getLeftDrawminoes() {
 		return leftDrawminoes;
@@ -37,13 +42,23 @@ public class BoardPanel extends JPanel {
 	}
 
 	public void addLeftDrawmino(Drawmino d) {
+		//if (!leftDrawminoes.isEmpty() && d == leftDrawminoes.get(leftDrawminoes.size() - 1)) return;
 		leftDrawminoes.add(d);
 	}
 
 	public void addRightDrawmino(Drawmino d) {
+		//if (!rightDrawminoes.isEmpty() && d == rightDrawminoes.get(rightDrawminoes.size() - 1)) return;
 		rightDrawminoes.add(d);
 	}
 
+	public Drawmino getLeftDrawmino(){
+		return leftDrawminoes.get(leftDrawminoes.size() - 1);
+	}
+	
+	public Drawmino getRightDrawmino(){
+		return rightDrawminoes.get(rightDrawminoes.size() -1);
+	}
+	
 	private void drawDrawminoes(Graphics g) {
 		int x = 256;
 		int y = 220;

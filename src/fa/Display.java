@@ -10,10 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class Display extends JPanel {
 
+	private Timer timer = new Timer(3000, new TimerListener());
 	private ArrayList<Dom> dominoes;
 	private GameState g;
 	private JTextField field;
@@ -22,7 +24,7 @@ public class Display extends JPanel {
 	private PlayerPanel p1;
 	private BoardPanel boardPanel;
 	private JLabel label;
-	
+
 	public Display() {
 		this.g = GameState.getInstance();
 		dominoes = new ArrayList<Dom>();
@@ -79,7 +81,9 @@ public class Display extends JPanel {
 		JButton right = new JButton("Add Right");
 		right.setBackground(Color.BLACK);
 		right.setForeground(Color.WHITE);
-		label = new JLabel("   Player" + g.getCurrentPlayer() + ": Which tile?");
+		// label = new JLabel("   Player" + g.getCurrentPlayer() +
+		// ": Which tile?");
+		label = new JLabel();
 		label.setForeground(Color.WHITE);
 		label.setOpaque(true);
 		label.setBackground(Color.BLACK);
@@ -91,113 +95,8 @@ public class Display extends JPanel {
 		j.add(right);
 		center.add(j, BorderLayout.SOUTH);
 		add(center, BorderLayout.CENTER);
-		System.out.println(g.getCurrentPlayer() + " at Display constructor");
 
-		left.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int index = Integer.parseInt(field.getText());
-				field.setText("");
-
-				Hand hand = g.getHand(g.getCurrentPlayer());
-				Dom d = hand.removeDom(index);
-				Board board = g.getBoard();
-				int leftEnd = board.getLeftEnd();
-				if (d.getRight() == leftEnd) {
-					board.addDom(0, d);
-					boardPanel.addLeftDrawmino(new Drawmino(d));
-					if (g.getCurrentPlayer() == 0) {
-						p1.removeDrawmino(index);
-					} else {
-						p2.removeDrawmino(index);
-					}
-					skip = 0;
-					board.setLeftEnd(d.getLeft());
-					callRepaint();
-				} else if (d.getLeft() == leftEnd) {
-					d.flip();
-					board.addDom(0, d);
-					boardPanel.addLeftDrawmino(new Drawmino(d));
-					if (g.getCurrentPlayer() == 0) {
-						p1.removeDrawmino(index);
-					} else {
-						p2.removeDrawmino(index);
-					}
-					skip = 0;
-					board.setLeftEnd(d.getLeft());
-					callRepaint();
-				} else {
-					skip++;
-					hand.addDom(-1, d);
-					if (g.getCurrentPlayer() == 0) {
-						p1.addDrawmino(new Drawmino(d));
-					} else {
-						p2.addDrawmino(new Drawmino(d));
-					}
-				}
-				changeCurrentPlayer();
-			}
-		});
-
-		right.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				int index = Integer.parseInt(field.getText());
-				field.setText("");
-				Hand hand = g.getHand(g.getCurrentPlayer());
-
-				Dom d = hand.removeDom(index);
-				Board board = g.getBoard();
-				int rightEnd = board.getRightEnd();
-				if (d.getLeft() == rightEnd) {
-					board.addDom(1, d);
-					board.setRightEnd(d.getRight());
-					boardPanel.addRightDrawmino(new Drawmino(d));
-					if (g.getCurrentPlayer() == 0) {
-						p1.removeDrawmino(index);
-					} else {
-						p2.removeDrawmino(index);
-					}
-					skip = 0;
-					board.setRightEnd(d.getRight());
-					callRepaint();
-				} else if (d.getRight() == rightEnd) {
-					d.flip();
-					board.addDom(1, d);
-					board.setRightEnd(d.getRight());
-					boardPanel.addRightDrawmino(new Drawmino(d));
-					if (g.getCurrentPlayer() == 0) {
-						p1.removeDrawmino(index);
-					} else {
-						p2.removeDrawmino(index);
-					}
-					skip = 0;
-					board.setRightEnd(d.getRight());
-					callRepaint();
-				} else {
-					skip++;
-					hand.addDom(-1, d);
-					if (g.getCurrentPlayer() == 0) {
-						p1.addDrawmino(new Drawmino(d));
-					} else {
-						p2.addDrawmino(new Drawmino(d));
-					}
-				}
-				changeCurrentPlayer();
-			}
-		});
-
-		pass.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				skip++;
-				changeCurrentPlayer();
-			}
-		});
+		timer.start();
 	}
 
 	public void changeCurrentPlayer() {
@@ -206,12 +105,107 @@ public class Display extends JPanel {
 		if (skip == 2) {
 			g.setStatus(Status.DONE_STATE);
 		}
-		label.setText("   Player" + g.getCurrentPlayer() + ": Which tile?");
+		// label.setText("   Player" + g.getCurrentPlayer() + ": Which tile?");
 	}
 
 	public void callRepaint() {
+
+		p1.clearDrawminoes();
+		ArrayList<Dom> doms = new ArrayList<Dom>();
+		doms = g.getHand(0).getDoms();
+		for (Dom d : doms) {
+			p1.addDrawmino(new Drawmino(d));
+		}
+		doms.clear();
+
+		p2.clearDrawminoes();
+		doms = g.getHand(1).getDoms();
+		for (Dom d : doms) {
+			p2.addDrawmino(new Drawmino(d));
+		}
+		doms.clear();
+
+		boardPanel.clearDrawminoes();
+		FaBoardRep rep = (FaBoardRep) g.getBoard().getRep();
+		doms = rep.getLeftDoms();
+		for (Dom d : doms) {
+			boardPanel.addLeftDrawmino(new Drawmino(d));
+		}
+		doms.clear();
+		doms = rep.getRightDoms();
+		for (Dom d : doms) {
+			boardPanel.addRightDrawmino(new Drawmino(d));
+		}
+
 		p1.repaint();
 		p2.repaint();
 		boardPanel.repaint();
+		int winner = g.getWinner();
+		if (winner == -2) {
+			label.setText("Tie!");
+		} else if (winner != -1) {
+			label.setText("     Winner: " + g.getStrategy(winner).getName()
+					+ "!");
+		}
+	}
+
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
+	}
+
+	public class TimerListener implements ActionListener {
+
+		int pass = 0;
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int currentPlayer = g.getCurrentPlayer();
+			if (g.getStatus() != Status.PLAY_STATE)
+				return;
+			if (g.getStrategy(currentPlayer).playTile()) {
+				pass = 0;
+				if (g.getHand(currentPlayer).getDoms().size() == 0) {
+					calculateWinner();
+					return;
+				}
+				callRepaint();
+			} else {
+				pass++;
+				if (pass == 2) {
+					g.setStatus(Status.DONE_STATE);
+					calculateWinner();
+					return;
+				}
+			}
+			changeCurrentPlayer();
+		}
+	}
+
+	public void calculateWinner() {
+		if (g.getHand(0).getDoms().isEmpty())
+			g.setWinner(0);
+		else if (g.getHand(0).getDoms().isEmpty())
+			g.setWinner(1);
+		else {
+			ArrayList<ArrayList<Dom>> doms = new ArrayList<ArrayList<Dom>>();
+			doms.add(g.getHand(0).getDoms());
+			doms.add(g.getHand(1).getDoms());
+
+			int[] totals = new int[2];
+
+			for (int i = 0; i < 2; i++) {
+				for (Dom d : doms.get(i)) {
+					totals[i] += d.getLeft() + d.getRight();
+				}
+			}
+			if (totals[0] < totals[1]) {
+				g.setWinner(0);
+			} else if (totals[1] < totals[0]) {
+				g.setWinner(1);
+			} else
+				g.setWinner(-2);
+		}
+		timer.stop();
+		callRepaint();
 	}
 }

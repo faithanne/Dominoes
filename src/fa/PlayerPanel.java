@@ -40,6 +40,10 @@ public class PlayerPanel extends JPanel {
 		drawminoes.add(d);
 	}
 
+	public void clearDrawminoes(){
+		drawminoes.clear();
+	}
+	
 	public void removeDrawmino(int index) {
 		drawminoes.remove(index);
 	}
@@ -61,7 +65,6 @@ public class PlayerPanel extends JPanel {
 			g.drawImage(rotateImage(drawmino.getImage()), x, y, null);
 			x += 35;
 		}
-
 	}
 
 	@Override
