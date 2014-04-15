@@ -17,7 +17,7 @@ public class BoardPanel extends JPanel {
 	private BufferedImage background = null;
 	private List<Drawmino> leftDrawminoes = new ArrayList<Drawmino>();
 	private List<Drawmino> rightDrawminoes = new ArrayList<Drawmino>();
-
+	
 	public BoardPanel() {
 		setPreferredSize(new Dimension(700, 500));
 		URL input = getClass().getResource("table.png");
@@ -42,12 +42,10 @@ public class BoardPanel extends JPanel {
 	}
 
 	public void addLeftDrawmino(Drawmino d) {
-		//if (!leftDrawminoes.isEmpty() && d == leftDrawminoes.get(leftDrawminoes.size() - 1)) return;
 		leftDrawminoes.add(d);
 	}
 
 	public void addRightDrawmino(Drawmino d) {
-		//if (!rightDrawminoes.isEmpty() && d == rightDrawminoes.get(rightDrawminoes.size() - 1)) return;
 		rightDrawminoes.add(d);
 	}
 
