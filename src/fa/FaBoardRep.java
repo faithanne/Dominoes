@@ -24,6 +24,14 @@ public class FaBoardRep extends FaClutchRep {
 		return list;
 	}
 	
+	public Dom peekLeft(){
+		return leftStore.get(leftStore.size() -1);
+	}
+	
+	public Dom peekRight(){
+		return rightStore.get(rightStore.size() -1);
+	}
+	
 	public Dom removeDom(int location){
 		if (location == LEFT) return leftStore.remove(leftStore.size() - 1);
 		else if (location == RIGHT) return rightStore.remove(rightStore.size() - 1);

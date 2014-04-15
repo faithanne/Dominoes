@@ -24,6 +24,8 @@ public class Display extends JPanel {
 	private PlayerPanel p1;
 	private BoardPanel boardPanel;
 	private JLabel label;
+	private int leftEnd = -1;
+	private int rightEnd = -1;
 
 	public Display() {
 		this.g = GameState.getInstance();
@@ -110,35 +112,37 @@ public class Display extends JPanel {
 
 	public void callRepaint() {
 
-		p1.clearDrawminoes();
 		ArrayList<Dom> doms = new ArrayList<Dom>();
-		doms = g.getHand(0).getDoms();
-		for (Dom d : doms) {
-			p1.addDrawmino(new Drawmino(d));
+		if (g.getCurrentPlayer() == 0) {
+			p1.clearDrawminoes();
+			doms = g.getHand(0).getDoms();
+			for (Dom d : doms) {
+				p1.addDrawmino(new Drawmino(d));
+			}
+			p1.repaint();
+			doms.clear();
+		} else {
+			p2.clearDrawminoes();
+			doms = g.getHand(1).getDoms();
+			for (Dom d : doms) {
+				p2.addDrawmino(new Drawmino(d));
+			}
+			p2.repaint();
+			doms.clear();
 		}
-		doms.clear();
 
-		p2.clearDrawminoes();
-		doms = g.getHand(1).getDoms();
-		for (Dom d : doms) {
-			p2.addDrawmino(new Drawmino(d));
-		}
-		doms.clear();
-
-		boardPanel.clearDrawminoes();
 		FaBoardRep rep = (FaBoardRep) g.getBoard().getRep();
-		doms = rep.getLeftDoms();
-		for (Dom d : doms) {
-			boardPanel.addLeftDrawmino(new Drawmino(d));
-		}
-		doms.clear();
-		doms = rep.getRightDoms();
-		for (Dom d : doms) {
-			boardPanel.addRightDrawmino(new Drawmino(d));
+
+		if (g.getBoard().getLeftEnd() != leftEnd) {
+			boardPanel.addLeftDrawmino(new Drawmino(rep.peekLeft()));
+			leftEnd = g.getBoard().getLeftEnd();
+		} else if (rep.getRightDoms().isEmpty()){
+			rightEnd = g.getBoard().getRightEnd();
+		} else if (g.getBoard().getRightEnd() != rightEnd) {
+			boardPanel.addRightDrawmino(new Drawmino(rep.peekRight()));
+			rightEnd = g.getBoard().getRightEnd();
 		}
 
-		p1.repaint();
-		p2.repaint();
 		boardPanel.repaint();
 		int winner = g.getWinner();
 		if (winner == -2) {

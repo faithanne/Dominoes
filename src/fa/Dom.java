@@ -49,6 +49,6 @@ public class Dom {
 	}
 	
 	public String toString(){
-		return getLeft() + ", " + getRight();
+		return "[" + getLeft() + ", " + getRight() + "]";
 	}
 }
