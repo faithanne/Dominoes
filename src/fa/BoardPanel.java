@@ -19,7 +19,7 @@ public class BoardPanel extends JPanel {
 	private List<Drawmino> rightDrawminoes = new ArrayList<Drawmino>();
 	
 	public BoardPanel() {
-		setPreferredSize(new Dimension(700, 500));
+		setPreferredSize(new Dimension(900, 500));
 		URL input = getClass().getResource("table.png");
 		try {
 			background = ImageIO.read(input);

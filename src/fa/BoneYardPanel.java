@@ -20,7 +20,7 @@ public class BoneYardPanel extends JPanel {
 	private ArrayList<Drawmino> drawminoes = new ArrayList<Drawmino>();
 
 	public BoneYardPanel() {
-		setPreferredSize(new Dimension(100, 500));
+		setPreferredSize(new Dimension(67, 500));
 		URL input = getClass().getResource("back.png");
 		URL input2 = getClass(). getResource("table.png");
 		try {
@@ -47,13 +47,12 @@ public class BoneYardPanel extends JPanel {
 	}
 
 	private void drawDrawminoes(Graphics g) {
-		int x = 15;
+		int x = 5;
 		int y = 9;
 		for (@SuppressWarnings("unused") Drawmino drawmino : drawminoes) {
 			g.drawImage(scaleImage(back), x, y, null);
 			y+= 32;
 		}
-
 	}
 
 	@Override
@@ -62,5 +61,4 @@ public class BoneYardPanel extends JPanel {
 		g.drawImage(background, 0, 0, null);
 		drawDrawminoes(g);
 	}
-
 }

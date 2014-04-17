@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,60 +15,50 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class Display extends JPanel {
 
-	private Timer timer = new Timer(3000, new TimerListener());
-	private ArrayList<Dom> dominoes;
-	private GameState g;
+	private Timer timer = new Timer(2000, new TimerListener());
+	private GameState game;
 	private JTextField field;
-	private int skip = 0;
-	private PlayerPanel p2;
-	private PlayerPanel p1;
+	private PlayerPanel player2Panel;
+	private PlayerPanel player1Panel;
 	private BoardPanel boardPanel;
 	private JLabel label;
-	private int leftEnd = -1;
-	private int rightEnd = -1;
 
 	public Display() {
-		this.g = GameState.getInstance();
-		dominoes = new ArrayList<Dom>();
-
+		game = GameState.getInstance();
 		setLayout(new BorderLayout());
 
+		// create boneyard panel, add it to the west
 		BoneYardPanel bonePanel = new BoneYardPanel();
 		add(bonePanel, BorderLayout.WEST);
 
-		dominoes = g.getBoneYard().getDoms();
-		for (Dom d : dominoes) {
+		for (Dom d : game.getBoneYard().getDoms()) {
 			bonePanel.addDrawmino(new Drawmino(d));
 		}
 
-		p2 = new PlayerPanel();
-		add(p2, BorderLayout.NORTH);
-		dominoes.clear();
-		dominoes = g.getHand(1).getDoms();
-		for (Dom d : dominoes) {
-			p2.addDrawmino(new Drawmino(d));
+		// create player 2 panel, add it north
+		player2Panel = new PlayerPanel();
+		add(player2Panel, BorderLayout.NORTH);
+		for (Dom d : game.getHand(1).getDoms()) {
+			player2Panel.addDrawmino(new Drawmino(d));
 		}
 
-		p1 = new PlayerPanel();
-		add(p1, BorderLayout.SOUTH);
-		dominoes.clear();
-		dominoes = g.getHand(0).getDoms();
-		for (Dom d : dominoes) {
-			p1.addDrawmino(new Drawmino(d));
+		// create player 1 panel, add it south
+		player1Panel = new PlayerPanel();
+		add(player1Panel, BorderLayout.SOUTH);
+		for (Dom d : game.getHand(0).getDoms()) {
+			player1Panel.addDrawmino(new Drawmino(d));
 		}
 
+		// create board panel, add it center
 		JPanel center = new JPanel(new BorderLayout());
 		boardPanel = new BoardPanel();
 		center.add(boardPanel, BorderLayout.CENTER);
 
-		FaBoardRep r = (FaBoardRep) g.getBoard().getRep();
-		ArrayList<Dom> leftDoms = r.getLeftDoms();
-		ArrayList<Dom> rightDoms = r.getRightDoms();
-
-		for (Dom d : leftDoms) {
+		FaBoardRep boardRep = (FaBoardRep) game.getBoard().getRep();
+		for (Dom d : boardRep.getLeftDoms()) {
 			boardPanel.addLeftDrawmino(new Drawmino(d));
 		}
-		for (Dom d : rightDoms) {
+		for (Dom d : boardRep.getRightDoms()) {
 			boardPanel.addRightDrawmino(new Drawmino(d));
 		}
 
@@ -85,10 +75,12 @@ public class Display extends JPanel {
 		right.setForeground(Color.WHITE);
 		// label = new JLabel("   Player" + g.getCurrentPlayer() +
 		// ": Which tile?");
+
 		label = new JLabel();
 		label.setForeground(Color.WHITE);
 		label.setOpaque(true);
 		label.setBackground(Color.BLACK);
+
 		field = new JTextField();
 		j.add(left);
 		j.add(label);
@@ -101,55 +93,42 @@ public class Display extends JPanel {
 		timer.start();
 	}
 
-	public void changeCurrentPlayer() {
-		int current = g.getCurrentPlayer();
-		g.setCurrentPlayer((current + 1) % g.getNumPlayers());
-		if (skip == 2) {
-			g.setStatus(Status.DONE_STATE);
-		}
-		// label.setText("   Player" + g.getCurrentPlayer() + ": Which tile?");
-	}
-
 	public void callRepaint() {
 
-		ArrayList<Dom> doms = new ArrayList<Dom>();
-		if (g.getCurrentPlayer() == 0) {
-			p1.clearDrawminoes();
-			doms = g.getHand(0).getDoms();
-			for (Dom d : doms) {
-				p1.addDrawmino(new Drawmino(d));
-			}
-			p1.repaint();
-			doms.clear();
-		} else {
-			p2.clearDrawminoes();
-			doms = g.getHand(1).getDoms();
-			for (Dom d : doms) {
-				p2.addDrawmino(new Drawmino(d));
-			}
-			p2.repaint();
-			doms.clear();
+		player1Panel.clearDrawminoes();
+		for (Dom d : game.getHand(0).getDoms()) {
+			player1Panel.addDrawmino(new Drawmino(d));
+		}
+		player1Panel.repaint();
+
+		player2Panel.clearDrawminoes();
+		for (Dom d : game.getHand(1).getDoms()) {
+			player2Panel.addDrawmino(new Drawmino(d));
+		}
+		player2Panel.repaint();
+
+		boardPanel.clearDrawminoes();
+		FaBoardRep rep = (FaBoardRep) game.getBoard().getRep();
+
+		System.out.println("display, leftDoms: " + rep.getLeftDoms());
+		for (Dom d : rep.getLeftDoms()) {
+			boardPanel.addLeftDrawmino(new Drawmino(d));
 		}
 
-		FaBoardRep rep = (FaBoardRep) g.getBoard().getRep();
-
-		if (g.getBoard().getLeftEnd() != leftEnd) {
-			boardPanel.addLeftDrawmino(new Drawmino(rep.peekLeft()));
-			leftEnd = g.getBoard().getLeftEnd();
-		} else if (rep.getRightDoms().isEmpty()){
-			rightEnd = g.getBoard().getRightEnd();
-		} else if (g.getBoard().getRightEnd() != rightEnd) {
-			boardPanel.addRightDrawmino(new Drawmino(rep.peekRight()));
-			rightEnd = g.getBoard().getRightEnd();
+		System.out.println("display, rightDoms: " + rep.getRightDoms());
+		for (Dom d : rep.getRightDoms()) {
+			boardPanel.addRightDrawmino(new Drawmino(d));
 		}
-
 		boardPanel.repaint();
-		int winner = g.getWinner();
-		if (winner == -2) {
-			label.setText("Tie!");
-		} else if (winner != -1) {
-			label.setText("     Winner: " + g.getStrategy(winner).getName()
-					+ "!");
+
+		if (game.getStatus() == Status.DONE_STATE) {
+			int winner = game.getWinner();
+			if (winner == -2) {
+				label.setText("Tie!");
+			} else if (winner != -1) {
+				label.setText("     Winner: "
+						+ game.getStrategy(winner).getName() + "!");
+			}
 		}
 	}
 
@@ -158,58 +137,26 @@ public class Display extends JPanel {
 	}
 
 	public class TimerListener implements ActionListener {
-
 		int pass = 0;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			int currentPlayer = g.getCurrentPlayer();
-			if (g.getStatus() != Status.PLAY_STATE)
-				return;
-			if (g.getStrategy(currentPlayer).playTile()) {
+			int currentPlayer = game.getCurrentPlayer();
+			if (game.getStatus() != Status.PLAY_STATE) {
+				timer.stop();
+				callRepaint();
+			} else if (game.getStrategy(currentPlayer).playTile()) {
 				pass = 0;
-				if (g.getHand(currentPlayer).getDoms().size() == 0) {
-					calculateWinner();
-					return;
-				}
 				callRepaint();
 			} else {
 				pass++;
 				if (pass == 2) {
-					g.setStatus(Status.DONE_STATE);
-					calculateWinner();
+					game.setStatus(Status.DONE_STATE);
+					GameMgr.calculateWinner();
 					return;
 				}
 			}
-			changeCurrentPlayer();
+			GameMgr.setNextPlayer(currentPlayer);
 		}
-	}
-
-	public void calculateWinner() {
-		if (g.getHand(0).getDoms().isEmpty())
-			g.setWinner(0);
-		else if (g.getHand(0).getDoms().isEmpty())
-			g.setWinner(1);
-		else {
-			ArrayList<ArrayList<Dom>> doms = new ArrayList<ArrayList<Dom>>();
-			doms.add(g.getHand(0).getDoms());
-			doms.add(g.getHand(1).getDoms());
-
-			int[] totals = new int[2];
-
-			for (int i = 0; i < 2; i++) {
-				for (Dom d : doms.get(i)) {
-					totals[i] += d.getLeft() + d.getRight();
-				}
-			}
-			if (totals[0] < totals[1]) {
-				g.setWinner(0);
-			} else if (totals[1] < totals[0]) {
-				g.setWinner(1);
-			} else
-				g.setWinner(-2);
-		}
-		timer.stop();
-		callRepaint();
 	}
 }
