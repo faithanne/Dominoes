@@ -1,4 +1,4 @@
-package fa;
+package main;
 
 public enum Status {
 	INTRO_STATE(0), PLAY_STATE(1), DONE_STATE(2);

@@ -1,12 +1,12 @@
-package fa;
+package clutchReps;
 
 import java.util.ArrayList;
 
+import main.Dom;
+import main.Loc;
+
 public class FaBoardRep extends FaClutchRep {
 
-	public static final int LEFT = 0;
-	public static final int RIGHT = 1;
-	public static final int ANY = -1;
 	protected ArrayList<Dom> leftStore;
 	protected ArrayList<Dom> rightStore;
 	
@@ -16,8 +16,8 @@ public class FaBoardRep extends FaClutchRep {
 	}
 	
 	public void addDom(int location, Dom d){
-		if (location == LEFT) leftStore.add(d);
-		else if (location == RIGHT) rightStore.add(d);
+		if (location == Loc.LEFT) leftStore.add(d);
+		else if (location == Loc.RIGHT) rightStore.add(d);
 	}
 	
 	public ArrayList<Dom> getDoms(){
@@ -36,8 +36,8 @@ public class FaBoardRep extends FaClutchRep {
 	}
 	
 	public Dom removeDom(int location){
-		if (location == LEFT) return leftStore.remove(leftStore.size() - 1);
-		else if (location == RIGHT) return rightStore.remove(rightStore.size() - 1);
+		if (location == Loc.LEFT) return leftStore.remove(leftStore.size() - 1);
+		else if (location == Loc.RIGHT) return rightStore.remove(rightStore.size() - 1);
 		else return null;
 	}
 	

@@ -1,4 +1,4 @@
-package fa;
+package displays;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import main.Drawmino;
 
 @SuppressWarnings("serial")
 public class BoneYardPanel extends JPanel {

@@ -1,11 +1,10 @@
-package fa;
+package clutches;
+
+import clutchReps.FaBoardRep;
+import main.Dom;
+import main.Loc;
 
 public class Board extends Clutch {
-
-	public static final int LEFT = 0;
-	public static final int RIGHT = 1;
-	public static final int ANY = -1;
-
 	private int leftEnd;
 	private int rightEnd;
 
@@ -35,7 +34,7 @@ public class Board extends Clutch {
 	}
 
 	public void addDom(int location, Dom d) {
-		if (location == LEFT) {					// if location is LEFT
+		if (location == Loc.LEFT) {					// if location is LEFT
 			if (leftEnd != d.getRight()) {		// and leftEnd != right
 				if (leftEnd == d.getLeft()) {	// and leftEnd == left
 					d.flip();					// then flip it!
@@ -43,8 +42,8 @@ public class Board extends Clutch {
 					return;
 			}
 			this.leftEnd = d.getLeft();			//set the new leftEnd
-			rep.addDom(LEFT, d);
-		} else if (location == RIGHT) {			// if location is RIGHT
+			rep.addDom(Loc.LEFT, d);
+		} else if (location == Loc.RIGHT) {			// if location is RIGHT
 			if (rightEnd != d.getLeft()) {		// and rightEnd != left
 				if (rightEnd == d.getRight()) {	// and rightEnd == right
 					d.flip();					// then flip it
@@ -52,7 +51,7 @@ public class Board extends Clutch {
 					return;
 			}
 			this.rightEnd = d.getRight();		// set the new rightEnd
-			rep.addDom(RIGHT, d);
+			rep.addDom(Loc.RIGHT, d);
 		}
 	}
 }

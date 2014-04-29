@@ -1,24 +1,41 @@
-package fa;
+package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import strategies.AdamStrategy;
+import strategies.CJStrategy;
+import strategies.CalumStrategy;
+import strategies.EthanStrategy;
+import strategies.FaithStrategy;
+import strategies.JacobStrategy;
+import strategies.MattStrategy;
+import strategies.PaulStrategy;
+import strategies.SebastianStrategy;
+import strategies.Strategy;
+import clutchReps.FaBoardRep;
+import clutchReps.FaBoneYardRep;
+import clutchReps.FaHandRep;
+import clutches.Board;
+import clutches.BoneYard;
+import clutches.Hand;
 
 public class GameMgr {
 
-	private static int players;
-
-	private static Display display;
 	private static GameState game;
+	private static int[] scores = new int[2];
+	private Strategy opponent;
+	private static int gamesRemaining;
 
-	@SuppressWarnings("static-access")
-	public GameMgr(int players) {
-		this.players = players;
+	public GameMgr() {
 	}
 
-	public void resetGame() {
+	public int[] resetGame(int players, int[] scores) {
 
 		game = GameState.getInstance();
 
@@ -78,12 +95,13 @@ public class GameMgr {
 		board.setRightEnd(firstDom.getRight());
 
 		// set scores
-		int[] scores = { 0, 0 };
+		this.scores = scores;
 		game.setScores(scores);
 
 		// set status and first player
 		game.setStatus(Status.INTRO_STATE);
-		setNextPlayer(results[0]);
+		game.setCurrentPlayer(results[0]);
+		setNextPlayer();
 
 		// set play state
 		game.setStatus(Status.PLAY_STATE);
@@ -91,9 +109,15 @@ public class GameMgr {
 
 		// set strategies
 		Strategy[] strategies = new Strategy[players];
-		strategies[0] = new FaithStrategy(0);
-		strategies[1] = new FaithStrategy(1);
+		strategies[0] = new FaithStrategy();
+		Object Strategy;
+		if (gamesRemaining == 5){
+			opponent = chooseStrategy();
+		}
+		strategies[1] = opponent;
 		game.setStrategies(strategies);
+		
+		return scores;
 	}
 
 	public static int[] getStartingDom(Hand[] hands) {
@@ -151,9 +175,13 @@ public class GameMgr {
 		return results;
 	}
 
-	public static int setNextPlayer(int player) {
-		player++;
-		int p = (player) % players;
+	public static void setWinner() {
+		game.setWinner(game.getCurrentPlayer());
+		game.setStatus(Status.DONE_STATE);
+	}
+
+	public static int setNextPlayer() {
+		int p = (game.getCurrentPlayer() + 1) % game.getNumPlayers();
 		game.setCurrentPlayer(p);
 		return p;
 	}
@@ -192,15 +220,10 @@ public class GameMgr {
 				} else {
 					heavySide = d.getLeft();
 				}
-
 			}
 		}
 		int[] results = { index, weight, heavySide };
 		return results;
-	}
-
-	public void callRepaint() {
-		display.callRepaint();
 	}
 
 	public static void calculateWinner() {
@@ -218,29 +241,83 @@ public class GameMgr {
 				totals[i] += d.getLeft() + d.getRight();
 			}
 		}
-		
+
 		// if 1 < 2, 1 wins
 		if (totals[0] < totals[1]) {
 			game.setWinner(0);
-		// if 1 > 2, 2 wins
+			scores[0] += totals[1] - totals[0];
+			// if 1 > 2, 2 wins
 		} else if (totals[1] < totals[0]) {
 			game.setWinner(1);
-		// otherwise there is a tie
-		} else
+			scores[1] += totals[0] - totals[1];
+			// otherwise there is a tie
+		} else {
 			game.setWinner(-2);
+		}
 		game.setStatus(Status.DONE_STATE);
+	}
+
+	public static Strategy chooseStrategy() {
+		String[] list = { "Adam", "Calum", "CJ", "Ethan", "Faith-Anne",
+				"Jacob", "Matt", "Paul", "Sebastian" };
+		JComboBox<String> jcb = new JComboBox<String>(list);
+		String opponent = (String) JOptionPane.showInputDialog(null, "Choose an Opponent:", null, JOptionPane.QUESTION_MESSAGE, null, list, list[0]);
+		switch (opponent) {
+		case "Adam":
+			return new AdamStrategy();
+		case "Calum":
+			return new CalumStrategy();
+		case "CJ":
+			return new CJStrategy();
+		case "Ethan":
+			return new EthanStrategy();
+		case "Faith-Anne":
+			return new FaithStrategy();
+		case "Jacob":
+			return new JacobStrategy();
+		case "Matt":
+			return new MattStrategy();
+		case "Paul":
+			return new PaulStrategy();
+		case "Sebastian":
+			return new SebastianStrategy();
+		default:
+			return new FaithStrategy();
+		}
+	}
+	
+	public static String getGamesLeft() {
+		return String.valueOf(gamesRemaining);
 	}
 
 	public static void main(String[] args) {
 		int players = 2;
-		GameMgr gm = new GameMgr(players);
-		gm.resetGame();
+		int[] scores = { 0, 0 };
+		gamesRemaining = 5;
+		GameMgr gm = new GameMgr();
 
-		display = new Display();
+		// Load the initial game.
+		gm.resetGame(players, scores);
+		// And decrement the games remaining.
+		gamesRemaining--;
+
+		Display display = new Display();
 		JFrame frame = new JFrame("Dominoes!");
 		frame.add(display);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(967, 700);
 		frame.setVisible(true);
+
+		boolean playing = true;
+		// Continue to play until we've exhausted all the remaining games.
+		while (playing) {
+			if (game.getStatus() == Status.DONE_STATE) {
+				scores = gm.resetGame(players, scores);
+				gamesRemaining--;
+			}
+			if (gamesRemaining <= 0) {
+				playing = false;
+			}
+		}
 	}
 }

@@ -1,4 +1,6 @@
-package fa;
+package strategies;
+
+import main.GameState;
 
 public interface Strategy {
 	

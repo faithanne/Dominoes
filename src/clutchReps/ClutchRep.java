@@ -1,6 +1,8 @@
-package fa;
+package clutchReps;
 
 import java.util.ArrayList;
+
+import main.Dom;
 
 public interface ClutchRep {
 

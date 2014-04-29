@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.5" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="fa.Clutch" project="Dominoes" file="/Dominoes/src/fa/Clutch.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="clutches.Clutch" project="Dominoes" file="/Dominoes/src/clutches/Clutch.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="235" y="156"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="fa.ClutchRep" project="Dominoes" file="/Dominoes/src/fa/ClutchRep.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="2" language="java" name="clutchReps.ClutchRep" project="Dominoes" 
+    file="/Dominoes/src/clutchReps/ClutchRep.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="655" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="3" language="java" name="fa.BoneYard" project="Dominoes" file="/Dominoes/src/fa/BoneYard.java" 
+  <class id="3" language="java" name="clutches.BoneYard" project="Dominoes" file="/Dominoes/src/clutches/BoneYard.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="87" x="57" y="287"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="fa.Board" project="Dominoes" file="/Dominoes/src/fa/Board.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="clutches.Board" project="Dominoes" file="/Dominoes/src/clutches/Board.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="240" y="433"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="fa.Hand" project="Dominoes" file="/Dominoes/src/fa/Hand.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="clutches.Hand" project="Dominoes" file="/Dominoes/src/clutches/Hand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="81" width="87" x="361" y="268"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="fa.FaClutchRep" project="Dominoes" file="/Dominoes/src/fa/FaClutchRep.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="clutchReps.FaClutchRep" project="Dominoes" 
+    file="/Dominoes/src/clutchReps/FaClutchRep.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="663" y="387"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="fa.FaBoneYardRep" project="Dominoes" file="/Dominoes/src/fa/FaBoneYardRep.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="clutchReps.FaBoneYardRep" project="Dominoes" 
+    file="/Dominoes/src/clutchReps/FaBoneYardRep.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="477" y="497"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="fa.FaHandRep" project="Dominoes" file="/Dominoes/src/fa/FaHandRep.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="clutchReps.FaHandRep" project="Dominoes" 
+    file="/Dominoes/src/clutchReps/FaHandRep.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="700" y="603"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -73,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="fa.Dom" project="Dominoes" file="/Dominoes/src/fa/Dom.java" binary="false" 
+  <class id="9" language="java" name="main.Dom" project="Dominoes" file="/Dominoes/src/main/Dom.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="956" y="324"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -82,16 +82,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="fa.GameState" project="Dominoes" file="/Dominoes/src/fa/GameState.java" 
+  <class id="10" language="java" name="main.GameState" project="Dominoes" file="/Dominoes/src/main/GameState.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="242" y="998"/>    
+    <position height="-1" width="-1" x="216" y="1020"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="fa.Display" project="Dominoes" file="/Dominoes/src/fa/Display.java" 
+  <class id="11" language="java" name="main.Display" project="Dominoes" file="/Dominoes/src/main/Display.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="923" y="758"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -100,17 +100,17 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="fa.GameMgr" project="Dominoes" file="/Dominoes/src/fa/GameMgr.java" 
+  <class id="12" language="java" name="main.GameMgr" project="Dominoes" file="/Dominoes/src/main/GameMgr.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="429" y="776"/>    
+    <position height="-1" width="-1" x="456" y="708"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="fa.BoneYardPanel" project="Dominoes" file="/Dominoes/src/fa/BoneYardPanel.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="13" language="java" name="displays.BoneYardPanel" project="Dominoes" 
+    file="/Dominoes/src/displays/BoneYardPanel.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="686" y="792"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -118,8 +118,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="fa.PlayerPanel" project="Dominoes" file="/Dominoes/src/fa/PlayerPanel.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="displays.PlayerPanel" project="Dominoes" 
+    file="/Dominoes/src/displays/PlayerPanel.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="872" y="1010"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -127,16 +127,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="fa.BoardPanel" project="Dominoes" file="/Dominoes/src/fa/BoardPanel.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="767" y="1222"/>    
+  <class id="15" language="java" name="displays.BoardPanel" project="Dominoes" 
+    file="/Dominoes/src/displays/BoardPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="747" y="1336"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="fa.Drawmino" project="Dominoes" file="/Dominoes/src/fa/Drawmino.java" 
+  <class id="16" language="java" name="main.Drawmino" project="Dominoes" file="/Dominoes/src/main/Drawmino.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="243" width="235" x="357" y="975"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -145,7 +145,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="17" language="java" name="fa.Status" project="Dominoes" file="/Dominoes/src/fa/Status.java" 
+  <enumeration id="17" language="java" name="main.Status" project="Dominoes" file="/Dominoes/src/main/Status.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="31" y="814"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -153,9 +153,9 @@
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </interface>  
-  <interface id="18" language="java" name="fa.Strategy" project="Dominoes" file="/Dominoes/src/fa/Strategy.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  </enumeration>  
+  <interface id="18" language="java" name="strategies.Strategy" project="Dominoes" 
+    file="/Dominoes/src/strategies/Strategy.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="20" y="1260"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -163,47 +163,32 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="19" language="java" name="fa.PlayState" project="Dominoes" file="/Dominoes/src/fa/PlayState.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="84" y="956"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="20" language="java" name="fa.IntroState" project="Dominoes" file="/Dominoes/src/fa/IntroState.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-42" y="922"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="21" language="java" name="fa.DoneState" project="Dominoes" file="/Dominoes/src/fa/DoneState.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-3" y="1067"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="22">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="23" name="drawminoes"/>      
-      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="25">    
+  <generalization id="19">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="20">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="26" name="board"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
+      <attribute id="21" name="board"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <realization id="24">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <association id="25">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="26" name="drawminoes"/>      
+      <multiplicity id="27" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="28">    
@@ -211,115 +196,75 @@
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <association id="29">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="30" name="drawminoes"/>      
-      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="32">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <generalization id="34">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <generalization id="35">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <association id="36">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="37" name="dominoes"/>      
-      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="39">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <realization id="40">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="17"/>  
-  </realization>  
-  <association id="41">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="42" name="hands"/>      
-      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="45" name="store"/>      
-      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="48" name="rep"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="50">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="17"/>  
-  </realization>  
-  <realization id="51">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="17"/>  
-  </realization>  
-  <association id="52">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="53" name="INSTANCE"/>      
-      <multiplicity id="54" minimum="0" maximum="1"/>    
+      <attribute id="30" name="INSTANCE"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="55">    
+  <generalization id="32">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="33">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="56" name="strategies"/>      
-      <multiplicity id="57" minimum="0" maximum="2147483647"/>    
+      <attribute id="34" name="status"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="37">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="38" name="rep"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="41" name="strategies"/>      
+      <multiplicity id="42" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="58">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="59" name="boneYard"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
+  <association id="43">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="44" name="store"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="61">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="62" name="drawminoes"/>      
-      <multiplicity id="63" minimum="0" maximum="2147483647"/>    
+  <association id="46">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="47" name="hands"/>      
+      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="50" name="drawminoes"/>      
+      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="64">    
+  <association id="52">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="65" name="status"/>      
-      <multiplicity id="66" minimum="0" maximum="1"/>    
+      <attribute id="53" name="boneYard"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

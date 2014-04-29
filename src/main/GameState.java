@@ -1,4 +1,9 @@
-package fa;
+package main;
+
+import clutches.Board;
+import clutches.BoneYard;
+import clutches.Hand;
+import strategies.Strategy;
 
 public class GameState {
 

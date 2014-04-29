@@ -1,4 +1,4 @@
-package fa;
+package main;
 
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -131,17 +131,6 @@ public class Drawmino extends JPanel {
 		return scaleOp.filter(before, after);
 	}
 
-	@SuppressWarnings("unused")
-	private BufferedImage rotateImage(BufferedImage before, double angle) {
-		BufferedImage after = new BufferedImage(before.getWidth(),
-				before.getHeight(), BufferedImage.TYPE_INT_ARGB);
-		AffineTransform at = new AffineTransform();
-		at.rotate(angle);
-		AffineTransformOp rotateOp = new AffineTransformOp(at,
-				AffineTransformOp.TYPE_BILINEAR);
-		return rotateOp.filter(before, after);
-	}
-	
 	private BufferedImage rotateImage(BufferedImage before) {
 		BufferedImage after = new BufferedImage(before.getWidth(),
 				before.getHeight(), BufferedImage.TYPE_INT_ARGB);

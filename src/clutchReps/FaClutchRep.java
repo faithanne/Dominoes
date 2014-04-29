@@ -1,20 +1,28 @@
-package fa;
+package clutchReps;
 
 import java.util.ArrayList;
 
-public class FaHandRep extends FaClutchRep {
+import main.Dom;
 
-	public FaHandRep() {
+public class FaClutchRep implements ClutchRep {
+
+	public static final int LEFT = 0;
+	public static final int RIGHT = 1;
+	public static final int ANY = -1;
+
+	protected ArrayList<Dom> store;
+
+	public FaClutchRep() {
+		store = new ArrayList<Dom>();
 	}
 
-	public FaHandRep(ArrayList<Dom> store) {
-		super(store);
+	public FaClutchRep(ArrayList<Dom> store) {
 		this.store = store;
 	}
 
 	@Override
 	public void addDom(int location, Dom d) {
-		// eliminate duplicates
+		//eliminate duplicates
 		for (Dom dom : store) {
 			if ((dom.getLeft() == d.getLeft() && dom.getRight() == d.getRight())
 					|| (dom.getLeft() == d.getRight() && dom.getRight() == d
@@ -22,7 +30,12 @@ public class FaHandRep extends FaClutchRep {
 				return;
 			}
 		}
-		store.add(d);
+		if (location == LEFT)
+			store.add(0, d);
+		else if (location == RIGHT)
+			store.add(d);
+		else
+			store.add(d);
 	}
 
 	@Override
